@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory Management System</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="logo">
+          <span>Inventory</span>
+          <small>Management</small>
+        </div>
+
+        <nav>
+          <a href="#" class="active">🏠 Dashboard</a>
+          <a href="#">📦 Products</a>
+          <a href="#">📊 Reports</a>
+          <a href="#">📋 Categories</a>
+          <a href="#">⚙️ Settings</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <p>© 2026 Inventory</p>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="header">
+          <div>
+            <h1>Inventory Management System</h1>
+            <p>Manage your products and inventory</p>
+          </div>
+
+          <div class="user">
+            <div class="user-icon">👤</div>
+            <div>
+              <strong>Admin</strong>
+              <small>Administrator</small>
+            </div>
+          </div>
+        </header>
+
+        <section class="cards">
+          <div class="card blue">
+            <div>
+              <p>Total Products</p>
+              <h2 id="totalProducts">0</h2>
+            </div>
+            <span>📦</span>
+          </div>
+
+          <div class="card red">
+            <div>
+              <p>Low Stock</p>
+              <h2 id="lowStock">0</h2>
+            </div>
+            <span>⚠️</span>
+          </div>
+
+          <div class="card green">
+            <div>
+              <p>In Stock</p>
+              <h2 id="inStock">0</h2>
+            </div>
+            <span>✓</span>
+          </div>
+
+          <div class="card purple">
+            <div>
+              <p>Total Stock Value</p>
+              <h2 id="stockValue">₹0</h2>
+            </div>
+            <span>₹</span>
+          </div>
+        </section>
+
+        <section class="product-section">
+          <div class="section-header">
+            <div>
+              <h2>Products</h2>
+              <p>Manage all your products</p>
+            </div>
+
+            <button class="add-btn" onclick="openModal()">+ Add Product</button>
+          </div>
+
+          <div class="filters">
+            <input
+              type="text" id="search" placeholder="🔍 Search product..." onkeyup="displayProducts()"
+            />
+
+            <select id="categoryFilter" onchange="displayProducts()">
+              <option value="all">All Categories</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Furniture">Furniture</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Food">Food</option>
+            </select>
+          </div>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                  <th>Supplier</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody id="productTable"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal" id="productModal">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h2 id="modalTitle">Add Product</h2>
+          <button onclick="closeModal()">×</button>
+        </div>
+
+        <form id="productForm">
+          <input type="hidden" id="editIndex" />
+
+          <label>Product Name</label>
+          <input
+            type="text" id="productName" placeholder="Enter product name" required/>
+
+          <label>Category</label>
+          <select id="category" required>
+            <option value="">Select Category</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Food">Food</option>
+          </select>
+
+          <label>Quantity</label>
+          <input
+            type="number" id="quantity" placeholder="Enter quantity" min="0" required/>
+
+          <label>Price</label>
+          <input type="number" id="price" placeholder="Enter price" required/>
+
+          <label>Supplier</label>
+          <input type="text" id="supplier" placeholder="Enter supplier" required/>
+
+          <div class="form-buttons">
+            <button type="button" class="cancel" onclick="closeModal()">
+              Cancel
+            </button>
+
+            <button type="submit" class="save">Save Product</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
